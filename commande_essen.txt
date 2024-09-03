@@ -1,0 +1,24 @@
+# LES commandes docker
+
+#docker --help
+# Docker build path( . dossier courant): permet de creer une image basé sur le fichier DockerFile specifié
+
+# docker ps: permet de voir tout les processus docker en cours/ -a comme argument apres ps permet de voir tous les processus docker existant sur notre machine, processus en cours ou pas
+
+# docker run image: permet de pouvoir lancer un nouveau container docker basé sur notre image
+
+# docker run -p portLocal:portExpose image: permet de pouvoir lancer notre iamge docker sur le 3000 de notre machine local en exposant le port 80 de notre container(exemple: docker run -p 3000:80 image) utiliser cette syntaxe n'est pas obligatoire mais recommander et vous devez toujours l'utiliser
+
+# docker run -p portLocal:portExpose -d image: nous permet de detacher notre containers afin de ne pas listening en permamnce dans notre container
+
+# docker attach image: nous permet d'attacher a notre container le listening en permanence de ce container
+
+# docker stop names: permet de couper manuellement une image docker en cours d'execution
+
+# docker start name: nouys permet de lancer un container docker dont aucun fichier de notre projet a ete modifie ce qui ne blocque pas le terminal comme docker run
+
+# docker logs image: nous permet de voir les logs de notre container docker par exemple les logs de la console
+
+# docker logs -f image: nous permet de voir les logs de notre container docker en mode listening c'est un mode attach
+
+
