@@ -9,7 +9,8 @@
 
 # docker run -p portLocal:portExpose image: permet de pouvoir lancer notre iamge docker sur le 3000 de notre machine local en exposant le port 80 de notre container(exemple: docker run -p 3000:80 image) utiliser cette syntaxe n'est pas obligatoire mais recommander et vous devez toujours l'utiliser
 
-# docker run -p portLocal:portExpose -d image: nous permet de detacher notre containers afin de ne pas listening en permamnce dans notre container
+
+# docker run -p portLocal:portExpose -d image: nous permet de detacher notre containers afin de ne pas listening en permamnce dans notre container(utile pour les projets necessitant un server web)
 
 # docker attach image: nous permet d'attacher a notre container le listening en permanence de ce container
 
@@ -21,4 +22,60 @@
 
 # docker logs -f image: nous permet de voir les logs de notre container docker en mode listening c'est un mode attach
 
+# docker run -it image: nous permet de pouuvoir intergagir avec notre container par le biais des input dus terminal afin de pouvoir envoyer a notre container des donnees pour de possible traitement
 
+# docker start -a -i name: nous permet de pouuvoir intergagir avec notre container par le biais des input du terminal afin de pouvoir envoyer a notre container des donnees pour de possible traitement si il n ya pas eu de modifications dans le code de notre container
+
+# docker rm image: nous permet de supprimer un container docker, on peut passer plusieurs container a la fois en separant le nom des containers par des espaces
+
+# docker container prune: nous permet de pouvoir supprimer tout les containers existants 
+
+# docker images: permet de voir toutes les images disponible dans mon docker
+
+# docker rmi image: permet de pouvoir supprimer l'image passer en parametre
+
+# docker images prune -a: permet de pouvoir supprimer toutes les images existantes ainsi que leur tag(attention a cette commande)
+
+# docker images prune: permet de pouvoir supprimer toutes les images existantes(attention a cette commande)
+
+# docker run -d --rm image: nous permet de lancer un container en mode detach qui sera automatiquement supprimé après qu'on est arreter ce container 
+
+# docker image inspect image: permet d'avoir des informations profondes sur une image
+
+# docker cp urldebaseLocal names:/urldedestinationContainer: permet de copier un dossier ou fichier de notre machine local vers notre container
+
+# docker run --name nomAttribue name: nous permet de pouvoir lancer un container on lui attribuant un nom particulier plutot que le nom aleatoire generalement genere
+
+# docker build -t names:tag . : permet de pouvoir creer une image docker en speifiant le nom et le tag a utiliser exemple: docker build -t goals:version-03122024 .
+
+# docker tag ancienName nouveauName: permet de pouvoir modfier le nom d'une image tout en conservant en copie l'ancienne image avec l'ancien nom
+
+### pour pusher un projet dans un repository docker hub il faut que le nom de l'image local soit egal au nom complet du repo sur dockerhub incluant votre nom d'utilisateur nomUtilsateur/repo Ex: moi/monrepo(image) moi/monrepo(docker hub)
+
+# docker push comleteRepositoryNamewithUsername:tag : pour pouvoir pousser une image docker dans le trader hub
+
+# docker pull comleteRepositoryNamewithUsername:tag : pour pouvoir recuperer une image docker du docker hub pour le mettre dans notre machine en local 
+
+
+
+
+
+
+
+#GERER LESS VOLUMES
+
+# docker volume: pour avoir la liste des commandes pour les volumes
+
+# docker run -v volumeName:/path: permet de pouvoir initialiser un container docker avec un named volume afin de pouvoir utiliser ce volume meme si notre container supprimé
+
+# docker volume prune: permet de supprimer tous les volumes disponible
+
+# docker volume rm vomeName: permet de supprimer un volume en particulier
+
+## utilisation des volume bind-mount qui sont des volumes qui peuvent etre modifie contrairement au anonymous et named volume
+
+## Pour utiliser les bind-mount volume vous devez vous assurer que Docker a acces a votre dossier par dans setting/ressources/fileCharing dans votre application desktop docker
+
+# docker run -v "cheminAbsolue du dossier source de votre application":/dossierAppContainer containerName: permet de creer un  
+
+# docker run -p 3000:80 -d  --name  app-2-container --rm -v feedback:/app/feedback -v "cheminAbsolue du dossier source de votre application":/app -v /app/node_modules  app-2 
