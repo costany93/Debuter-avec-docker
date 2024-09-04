@@ -76,6 +76,32 @@
 
 ## Pour utiliser les bind-mount volume vous devez vous assurer que Docker a acces a votre dossier par dans setting/ressources/fileCharing dans votre application desktop docker
 
-# docker run -v "cheminAbsolue du dossier source de votre application":/dossierAppContainer containerName: permet de creer un  
+# docker run -v "cheminAbsolue du dossier source de votre application:/dossierAppContainer" containerName: permet de creer un  
 
-# docker run -p 3000:80 -d  --name  app-2-container --rm -v feedback:/app/feedback -v "cheminAbsolue du dossier source de votre application":/app -v /app/node_modules  app-2 
+# docker run -p 3000:80 -d  --name  app-2-container --rm -v feedback:/app/feedback -v "cheminAbsolue du dossier source de votre application:/app" -v /app/node_modules  app-2 
+
+# docker run -v /app/data:  anonymous volumes: peuvent etre utilise pour empecher a notre container docker de pouvoir traiter certaines tache que nous voulons dediés exvlisvmenet à notre host machine ou encore machine physique afin d'eviter que notre container puisse ecrire des donnees sur notre machine physique 
+
+
+# docker run -v data:/app/data: name volumes
+
+# docker run -v /path/to/code:/app/code: bind mount volumes: permet de pouvoir partager des informations entre notre host machine et notre container docker mais attention il faudra dans ce cas ne pas donner la possibilité a notre container de ne pas pouvoir ecrire des données sur notre host machine car c'est extremenet dangereux et pour ce faire ajouter RO(read only) a la fin de l'instruction de notre bind volume (docker run -v /path/to/code:/app/code:ro)
+
+## combiner un bind mount volumes avec un anonymous volumes permet de dire au bind mount d'empecher que le container ne puisse ecrire sur notre machine local mais aussi d'inclure via l'anonymous la possibilté que certains fichier ou dossier dont nous voulons que le container puisse ecrire sur notre machine puisse quand meme avoir la possibilité de le faire 
+
+# .dockerfile ce fichier nous permet d'ignore certains fichier dans l'instruction COPY
+
+# Docker run -p 3000:80 --rm --name app-2-container -d  -v feedback:/app/feedback -v "chemin absolue de notre application:/app:ro" -v /app/node_modules -v /app/temp  app-2
+
+
+
+
+
+
+
+
+## GERER LES ARGUMENTS ET VARIABLES D'ENVRIONEMENTS
+
+# docker run --env-file ./file container: nous permet de pouvoir specifiier a docker qu'il peut utiliser le fichier .env pour pouvoir abtenir les varaibles d'environement
+
+# docker run --build-arg ARG=yourvalue: permet de pour construire notre image docker avec des arguments dynamique specifiier dans notre Dockerfile Ex: docker build -t app-2:arg-prod --build-arg DEFAULT_PORT=8000  .(ici on specifie le port d'ecoute dans notre commande)
