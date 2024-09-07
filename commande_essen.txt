@@ -105,3 +105,19 @@
 # docker run --env-file ./file container: nous permet de pouvoir specifiier a docker qu'il peut utiliser le fichier .env pour pouvoir abtenir les varaibles d'environement
 
 # docker run --build-arg ARG=yourvalue: permet de pour construire notre image docker avec des arguments dynamique specifiier dans notre Dockerfile Ex: docker build -t app-2:arg-prod --build-arg DEFAULT_PORT=8000  .(ici on specifie le port d'ecoute dans notre commande)
+
+
+## NETWORK
+
+## les containers d'un meme reseau peuvent communiquer entre elle
+
+# docker run --name mongodb mongo: exemple de creation d'un conteneur contenant la base de données mongo db 
+
+
+# docker network --help
+
+# docker network create nomNetwork: permet de pouvoir creer un network afin de l'utiliser
+
+# docker run -p 3000:3000 -d --rm --name films --network films-net networking-films: exemple de run d'un container dans un reseau films-net
+
+## on utilise le -p 3000:3000  dans un run seulement qu'on on veut connecter notre machine local a notre container docker 
