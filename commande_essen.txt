@@ -56,6 +56,12 @@
 
 # docker pull comleteRepositoryNamewithUsername:tag : pour pouvoir recuperer une image docker du docker hub pour le mettre dans notre machine en local 
 
+# docker exec -it nomDuContainer bash: permet de pouvoir voir les fichiers disponible(fichier copier de notre projet en local vers le container docker) dans notre container docker, on pourra par exemple voir les fichiers qui ont été copier a l'interieur de notre container
+
+# docker run -t -i nomImage /bin/bash: permet de pouvoir voir les fichiers disponibles(fichier copier de notre projet en local vers l'image docker) qui se trouve a l'interieur de notre image docker
+
+
+
 
 
 
